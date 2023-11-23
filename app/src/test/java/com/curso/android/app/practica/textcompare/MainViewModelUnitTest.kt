@@ -1,7 +1,7 @@
-package com.curso.android.app.practica.counter
+package com.curso.android.app.practica.textcompare
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.curso.android.app.practica.counter.view.MainViewModel
+import com.curso.android.app.practica.textcompare.view.MainViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.*
@@ -38,39 +38,27 @@ class MainViewModelUnitTest {
 
     @Test
     fun mainViewModel_CheckInitialValue() = runTest {
-        val value = viewModel.counter.value?.number
-        assertEquals(0, value)
+        val value = viewModel.result.value?.result
+        assertEquals(true, value)
     }
 
     @Test
-    fun mainViewModel_TestIncrementValue() = runTest {
+    fun mainViewModel_TestTruthyComparison() = runTest {
         launch {
-            viewModel.incrementCounter()
+            viewModel.makeTextComparison("test string", "test string")
         }
         advanceUntilIdle()
-        val value = viewModel.counter.value?.number
-        assertEquals(1, value)
+        val value = viewModel.result.value?.result
+        assertEquals(true, value)
     }
 
     @Test
-    fun mainViewModel_TestIncrementValueTwice() = runTest {
-        for (i in 0..1) {
-            launch {
-                viewModel.incrementCounter()
-            }
-            advanceUntilIdle()
-        }
-        val value = viewModel.counter.value?.number
-        assertEquals(2, value)
-    }
-
-    @Test
-    fun mainViewModel_TestDecrementValue() = runTest {
+    fun mainViewModel_TestFalsyComparison() = runTest {
         launch {
-            viewModel.decrementCounter()
+            viewModel.makeTextComparison("test string", "a different test string")
         }
         advanceUntilIdle()
-        val value = viewModel.counter.value?.number
-        assertEquals(-1, value)
+        val value = viewModel.result.value?.result
+        assertEquals(false, value)
     }
 }

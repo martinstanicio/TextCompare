@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">Contador</string>
+    <string name="app_name">Text Compare</string>
+    <string name="description">Escriba dos textos que desee comparar</string>
+    <string name="text_1_hint">Texto 1…</string>
+    <string name="text_2_hint">Texto 2…</string>
+    <string name="cta">Comparar textos</string>
+    <string name="result_default">Por favor introduzca dos textos</string>
+    <string name="result_positive">Los textos son iguales</string>
+    <string name="result_negative">Los textos no son iguales</string>
+    <string name="timestamp">Última actualización</string>
 </resources>
